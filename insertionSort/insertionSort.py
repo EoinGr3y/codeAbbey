@@ -1,19 +1,35 @@
-input = [131, 63, 81, 120, 96, 83, 3, 107, 78, 74, 98, 150, 165, 41, 156, 132, 52, 180, 20, 82, 100, 32, 34, 50, 88, 15, 109, 146, 23, 77, 86, 179, 197, 181, 199, 89, 140, 186, 91, 40, 28, 196, 159, 39, 176, 76, 12, 154, 126, 99, 169, 35, 45, 191, 133, 122, 112, 119, 59, 174, 148, 115, 192, 135, 6, 33, 162, 29, 31, 102, 114, 105, 8, 14, 42, 65, 142, 87, 2, 61, 19, 175, 11, 85, 44, 48, 172, 73, 72, 153, 185, 58, 166, 198, 9, 57, 183, 38, 139, 70, 136, 141, 155, 106, 10, 24, 193, 62, 160, 16, 51, 49, 5, 95, 79, 143, 149, 80, 1, 173, 93, 167, 194, 53, 90, 182, 97, 124]
+import time
+
+input = [83, 11, 196, 125, 119, 141, 160, 86, 8, 192, 54, 64, 176, 146, 131, 157, 136, 163, 49, 180, 6, 68, 164, 181, 48, 194, 173, 84, 156, 166, 92, 98, 33, 47, 183, 41, 39, 38, 104, 16, 36, 172, 120, 198, 22, 100, 4, 89, 65, 184, 137, 59, 158, 21, 187, 76, 79, 112, 114, 152, 56, 168, 178, 90, 162, 94, 52, 63, 188, 122, 9, 32, 75, 186, 139, 53, 195, 87, 161, 34, 124, 71, 175, 96, 149, 18, 155, 143, 44, 62, 31, 142, 169, 15, 197, 70, 28, 121, 102, 99, 97, 61, 171, 179, 2, 46, 154, 108, 134, 77, 69, 13, 116, 82, 37, 189, 133, 182, 193, 74, 27, 29, 7, 123, 140, 151]
 
 def main():
     result = insertionSort(input)
-
+    print('Result = ' + result)
 
 def insertionSort(array):
-    for index in range(1, len(array) - 1):
-        insertAtCorrectIndex(array, index)
+    result = ''
+    solutionArray = []
+    for index in range(0, len(array)):
+        if index == 0:
+            solutionArray.append(array[index])
+        else:
+            result += (str(insertAtCorrectIndex(array, index, solutionArray)) + ' ')
+    return result
 
-def insertAtCorrectIndex(array, currentIndex):
-    for index in range(1, currentIndex - 1):
-        if array[currentIndex] < array[index]:
-            shiftRemainingArray(index, array)
+def insertAtCorrectIndex(array, currentIndex, solutionArray):
+    for index in range(0, len(solutionArray)):
+        if array[currentIndex] < solutionArray[index]:
+            numberOfElementsShifted = shiftRemainingArrayAndInsert(array, solutionArray, index, currentIndex)
+            return numberOfElementsShifted
+        else:
+            continue
+    solutionArray.append(array[currentIndex])
+    return 0
 
-def shiftRemainingArray(index)
-
+def shiftRemainingArrayAndInsert(array, solutionArray, index, currentIndex):
+    temp = array[currentIndex]
+    solutionArray[index:index] = [temp]
+    numberOfElementsShifted = (len(solutionArray) - 1) - index
+    return numberOfElementsShifted
 
 main()
